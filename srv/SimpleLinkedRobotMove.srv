@@ -1,0 +1,13 @@
+uint8 mode
+uint8 NONE=0
+uint8 RESET=1
+uint8 EXECUTE=2
+uint8 EXECUTE_FROM_START=3
+float64 execution_shortcut_distance
+string[] joint_name
+float64[] start_position
+float64[] target_position
+float64[] expected_result_position
+duration max_execution_time
+---
+control_msgs/JointTrajectoryControllerState[] trajectory

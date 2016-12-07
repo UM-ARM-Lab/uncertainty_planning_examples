@@ -1,0 +1,11 @@
+uint8 mode
+uint8 NONE=0
+uint8 RESET=1
+uint8 EXECUTE=2
+uint8 EXECUTE_FROM_START=3
+float64 execution_shortcut_distance
+duration time_limit
+geometry_msgs/PoseStamped start
+geometry_msgs/PoseStamped target
+---
+geometry_msgs/PoseStamped[] trajectory
