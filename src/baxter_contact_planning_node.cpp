@@ -28,7 +28,7 @@ using namespace uncertainty_contact_planning;
 void plan(ros::Publisher& display_debug_publisher)
 {
     const uncertainty_planning_core::PLANNING_AND_EXECUTION_OPTIONS options = baxter_linked_common_config::GetOptions();
-    const config_common::EXTRA_CONFIG_PARAMS extra_options = baxter_linked_common_config::GetExtraOptions();
+    const config_common::TASK_CONFIG_PARAMS extra_options = baxter_linked_common_config::GetExtraOptions();
     const std::vector<double> joint_uncertainty_params = baxter_linked_common_config::GetJointUncertaintyParams(extra_options);
     assert(joint_uncertainty_params.size() == 7);
     const std::vector<double> joint_distance_weights = baxter_linked_common_config::GetJointDistanceWeights();

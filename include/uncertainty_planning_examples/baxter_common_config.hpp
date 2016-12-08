@@ -72,17 +72,17 @@ namespace baxter_linked_common_config
         return uncertainty_planning_core::GetOptions(GetDefaultOptions());
     }
 
-    inline config_common::EXTRA_CONFIG_PARAMS GetDefaultExtraOptions()
+    inline config_common::TASK_CONFIG_PARAMS GetDefaultExtraOptions()
     {
-        return config_common::EXTRA_CONFIG_PARAMS(0.03125, 25.0, 0.0, 0.0, "baxter_blocked_test_mod_env");
+        return config_common::TASK_CONFIG_PARAMS(0.03125, 25.0, 0.0, 0.0, "baxter_blocked_test_mod_env");
     }
 
-    inline config_common::EXTRA_CONFIG_PARAMS GetExtraOptions()
+    inline config_common::TASK_CONFIG_PARAMS GetExtraOptions()
     {
         return config_common::GetOptions(GetDefaultExtraOptions());
     }
 
-    inline simple_robot_models::LINKED_ROBOT_CONFIG GetDefaultRobotConfig(const config_common::EXTRA_CONFIG_PARAMS& options)
+    inline simple_robot_models::LINKED_ROBOT_CONFIG GetDefaultRobotConfig(const config_common::TASK_CONFIG_PARAMS& options)
     {
         const double env_resolution = options.environment_resolution;
         const double kp = 1.1;
@@ -158,7 +158,7 @@ namespace baxter_linked_common_config
         return reference_configuration;
     }
 
-    inline std::vector<double> GetJointUncertaintyParams(const config_common::EXTRA_CONFIG_PARAMS& options)
+    inline std::vector<double> GetJointUncertaintyParams(const config_common::TASK_CONFIG_PARAMS& options)
     {
         const std::vector<double> uncertainty_params(7, options.actuator_error);
         return uncertainty_params;
@@ -463,7 +463,7 @@ namespace baxter_linked_common_config
         return uncertainty_planning_core::LinkedSamplerPtr(new simple_samplers::SimpleLinkedBaseSampler<uncertainty_planning_core::PRNG>(reference_configuration));
     }
 
-    inline uncertainty_planning_core::LinkedSimulatorPtr GetSimulator(const config_common::EXTRA_CONFIG_PARAMS& options, const int32_t debug_level)
+    inline uncertainty_planning_core::LinkedSimulatorPtr GetSimulator(const config_common::TASK_CONFIG_PARAMS& options, const int32_t debug_level)
     {
         const simulator_environment_builder::EnvironmentComponents environment_components = simulator_environment_builder::BuildCompleteEnvironment(options.environment_id, options.environment_resolution);
         const fast_kinematic_simulator::SolverParameters solver_params = fast_kinematic_simulator::GetDefaultSolverParameters();

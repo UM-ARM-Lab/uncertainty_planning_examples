@@ -64,12 +64,12 @@ namespace se2_common_config
         return options;
     }
 
-    inline config_common::EXTRA_CONFIG_PARAMS GetDefaultExtraOptions()
+    inline config_common::TASK_CONFIG_PARAMS GetDefaultExtraOptions()
     {
-        return config_common::EXTRA_CONFIG_PARAMS(0.125, 10.0, 0.0, 0.125, "se2_maze");
+        return config_common::TASK_CONFIG_PARAMS(0.125, 10.0, 0.0, 0.125, "se2_maze");
     }
 
-    inline config_common::EXTRA_CONFIG_PARAMS GetExtraOptions()
+    inline config_common::TASK_CONFIG_PARAMS GetExtraOptions()
     {
         return config_common::GetOptions(GetDefaultExtraOptions());
     }
@@ -79,7 +79,7 @@ namespace se2_common_config
         return uncertainty_planning_core::GetOptions(GetDefaultOptions());
     }
 
-    inline simple_robot_models::SE2_ROBOT_CONFIG GetDefaultRobotConfig(const config_common::EXTRA_CONFIG_PARAMS& options)
+    inline simple_robot_models::SE2_ROBOT_CONFIG GetDefaultRobotConfig(const config_common::TASK_CONFIG_PARAMS& options)
     {
         const double kp = 0.1;
         const double ki = 0.0;
@@ -146,7 +146,7 @@ namespace se2_common_config
         return uncertainty_planning_core::SE2SamplerPtr(new simple_samplers::SimpleSE2BaseSampler<uncertainty_planning_core::PRNG>(std::pair<double, double>(env_min_x, env_max_x), std::pair<double, double>(env_min_y, env_max_y)));
     }
 
-    inline uncertainty_planning_core::SE2SimulatorPtr GetSimulator(const config_common::EXTRA_CONFIG_PARAMS& options, const int32_t debug_level)
+    inline uncertainty_planning_core::SE2SimulatorPtr GetSimulator(const config_common::TASK_CONFIG_PARAMS& options, const int32_t debug_level)
     {
         const simulator_environment_builder::EnvironmentComponents environment_components = simulator_environment_builder::BuildCompleteEnvironment(options.environment_id, options.environment_resolution);
         const fast_kinematic_simulator::SolverParameters solver_params = fast_kinematic_simulator::GetDefaultSolverParameters();

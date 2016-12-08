@@ -6,7 +6,7 @@
 
 namespace config_common
 {
-    struct EXTRA_CONFIG_PARAMS
+    struct TASK_CONFIG_PARAMS
     {
         double environment_resolution;
         double simulation_controller_frequency;
@@ -14,14 +14,14 @@ namespace config_common
         double actuator_error;
         std::string environment_id;
 
-        EXTRA_CONFIG_PARAMS(const double in_environment_resolution, const double in_simulation_controller_frequency, const double in_sensor_error, const double in_actuator_error, const std::string& in_environment_id) : environment_resolution(in_environment_resolution), simulation_controller_frequency(in_simulation_controller_frequency), sensor_error(in_sensor_error), actuator_error(in_actuator_error), environment_id(in_environment_id) {}
+        TASK_CONFIG_PARAMS(const double in_environment_resolution, const double in_simulation_controller_frequency, const double in_sensor_error, const double in_actuator_error, const std::string& in_environment_id) : environment_resolution(in_environment_resolution), simulation_controller_frequency(in_simulation_controller_frequency), sensor_error(in_sensor_error), actuator_error(in_actuator_error), environment_id(in_environment_id) {}
 
-        EXTRA_CONFIG_PARAMS() : environment_resolution(0.0), simulation_controller_frequency(0.0), sensor_error(0.0), actuator_error(0.0), environment_id("") {}
+        TASK_CONFIG_PARAMS() : environment_resolution(0.0), simulation_controller_frequency(0.0), sensor_error(0.0), actuator_error(0.0), environment_id("") {}
     };
 
-    inline EXTRA_CONFIG_PARAMS GetOptions(const EXTRA_CONFIG_PARAMS& initial_options)
+    inline TASK_CONFIG_PARAMS GetOptions(const TASK_CONFIG_PARAMS& initial_options)
     {
-        EXTRA_CONFIG_PARAMS options = initial_options;
+        TASK_CONFIG_PARAMS options = initial_options;
         // Get options via ROS params
         ros::NodeHandle nhp("~");
         options.environment_resolution = nhp.param(std::string("environment_resolution"), options.environment_resolution);
@@ -32,9 +32,9 @@ namespace config_common
         return options;
     }
 
-    inline std::ostream& operator<<(std::ostream& strm, const EXTRA_CONFIG_PARAMS& options)
+    inline std::ostream& operator<<(std::ostream& strm, const TASK_CONFIG_PARAMS& options)
     {
-        strm << "EXTRA_CONFIG_PARAMS:";
+        strm << "TASK_CONFIG_PARAMS:";
         strm << "\nenvironment_resolution: " << options.environment_resolution;
         strm << "\nsimulation_controller_frequency: " << options.simulation_controller_frequency;
         strm << "\nsensor_error: " << options.sensor_error;

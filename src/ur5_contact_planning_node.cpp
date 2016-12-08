@@ -29,7 +29,7 @@ void plan(ros::Publisher& display_debug_publisher)
 {
     std::cout << "Demonstrating UR5..." << std::endl;
     const uncertainty_planning_core::PLANNING_AND_EXECUTION_OPTIONS options = ur5_linked_common_config::GetOptions();
-    const config_common::EXTRA_CONFIG_PARAMS extra_options = ur5_linked_common_config::GetExtraOptions();
+    const config_common::TASK_CONFIG_PARAMS extra_options = ur5_linked_common_config::GetExtraOptions();
     const std::vector<double> joint_uncertainty_params = ur5_linked_common_config::GetJointUncertaintyParams(extra_options);
     assert(joint_uncertainty_params.size() == 6);
     const std::vector<double> joint_distance_weights = ur5_linked_common_config::GetJointDistanceWeights();
@@ -68,7 +68,7 @@ void plan(ros::Publisher& display_debug_publisher)
         std::cout << "Planner failed to reach goal" << std::endl;
     }
     // Print out the results & save them to the log file
-    const std::string log_results = "++++++++++\n" + PrettyPrint::PrettyPrint(options) + "\n" + PrettyPrint::PrettyPrint(extra_options) + "\nRESULTS:\n" + PrettyPrint::PrettyPrint(planner_stats, false, "\n");
+    const std::string log_results = "++++++++++\n" + PrettyPrint::PrettyPrint(options) + "\n" + PrettyPrint::PrettyPrint(extra_options)  + "\n" + PrettyPrint::PrettyPrint(extra_options) + "\nRESULTS:\n" + PrettyPrint::PrettyPrint(planner_stats, false, "\n");
     std::cout << "Planner results for " << options.num_particles << " particles:\n" << log_results << std::endl;
     std::ofstream log_file(options.planner_log_file, std::ios_base::out | std::ios_base::app);
     if (!log_file.is_open())

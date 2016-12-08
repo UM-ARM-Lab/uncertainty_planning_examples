@@ -161,7 +161,7 @@ void set_uncertainty(const std::vector<double>& joint_uncertainties, ros::Servic
 void execute(ros::Publisher& display_debug_publisher, ros::ServiceClient& robot_control_service, ros::ServiceClient& set_uncertainty_service)
 {
     const uncertainty_planning_core::PLANNING_AND_EXECUTION_OPTIONS options = ur5_linked_common_config::GetOptions();
-    const config_common::EXTRA_CONFIG_PARAMS extra_options = ur5_linked_common_config::GetExtraOptions();
+    const config_common::TASK_CONFIG_PARAMS extra_options = ur5_linked_common_config::GetExtraOptions();
     const std::vector<double> joint_uncertainty_params = ur5_linked_common_config::GetJointUncertaintyParams(extra_options);
     assert(joint_uncertainty_params.size() == 6);
     const std::vector<double> joint_distance_weights = ur5_linked_common_config::GetJointDistanceWeights();
@@ -203,7 +203,7 @@ void execute(ros::Publisher& display_debug_publisher, ros::ServiceClient& robot_
         // Save the executed policy
         uncertainty_planning_core::SaveLinkedPolicy(policy_execution_results.first, options.executed_policy_file);
         // Print out the results & save them to the log file
-        const std::string log_results = "++++++++++\n" + PrettyPrint::PrettyPrint(options) + "\nRESULTS:\n" + PrettyPrint::PrettyPrint(complete_policy_stats, false, "\n") + "\nSimulation step counts: " + PrettyPrint::PrettyPrint(policy_simulation_step_counts) + "\nExecution step counts: " + PrettyPrint::PrettyPrint(policy_execution_step_counts) + "\nExecution times: " + PrettyPrint::PrettyPrint(policy_execution_times);
+        const std::string log_results = "++++++++++\n" + PrettyPrint::PrettyPrint(options) + "\n" + PrettyPrint::PrettyPrint(extra_options) + "\nRESULTS:\n" + PrettyPrint::PrettyPrint(complete_policy_stats, false, "\n") + "\nSimulation step counts: " + PrettyPrint::PrettyPrint(policy_simulation_step_counts) + "\nExecution step counts: " + PrettyPrint::PrettyPrint(policy_execution_step_counts) + "\nExecution times: " + PrettyPrint::PrettyPrint(policy_execution_times);
         std::cout << "Policy results:\n" << log_results << std::endl;
         std::ofstream log_file(options.policy_log_file, std::ios_base::out | std::ios_base::app);
         if (!log_file.is_open())
