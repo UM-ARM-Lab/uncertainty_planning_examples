@@ -85,7 +85,7 @@ void peg_in_hole_env_se3(ros::Publisher& display_debug_publisher, ros::ServiceCl
 {
     const uncertainty_planning_core::PLANNING_AND_EXECUTION_OPTIONS options = se3_common_config::GetOptions();
     const config_common::TASK_CONFIG_PARAMS extra_options = se3_common_config::GetExtraOptions();
-    std::cout << PrettyPrint::PrettyPrint(options) << PrettyPrint::PrettyPrint(extra_options) << std::endl;
+    std::cout << PrettyPrint::PrettyPrint(options) << "\n" << PrettyPrint::PrettyPrint(extra_options) << std::endl;
     const std::pair<uncertainty_planning_core::SE3Config, uncertainty_planning_core::SE3Config> start_and_goal = se3_common_config::GetStartAndGoal();
     const uncertainty_planning_core::SE3SamplerPtr sampler = se3_common_config::GetSampler();
     const simple_robot_models::SE3_ROBOT_CONFIG robot_config = se3_common_config::GetDefaultRobotConfig(extra_options);

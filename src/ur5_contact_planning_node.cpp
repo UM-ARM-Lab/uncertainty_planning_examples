@@ -30,6 +30,7 @@ void plan(ros::Publisher& display_debug_publisher)
     std::cout << "Demonstrating UR5..." << std::endl;
     const uncertainty_planning_core::PLANNING_AND_EXECUTION_OPTIONS options = ur5_linked_common_config::GetOptions();
     const config_common::TASK_CONFIG_PARAMS extra_options = ur5_linked_common_config::GetExtraOptions();
+    std::cout << PrettyPrint::PrettyPrint(options) << "\n" << PrettyPrint::PrettyPrint(extra_options) << std::endl;
     const std::vector<double> joint_uncertainty_params = ur5_linked_common_config::GetJointUncertaintyParams(extra_options);
     assert(joint_uncertainty_params.size() == 6);
     const std::vector<double> joint_distance_weights = ur5_linked_common_config::GetJointDistanceWeights();

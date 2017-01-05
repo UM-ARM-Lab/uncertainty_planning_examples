@@ -27,7 +27,7 @@ void demonstrate_se3(ros::Publisher& display_debug_publisher)
     std::cout << "Demonstrating SE(3)..." << std::endl;
     const uncertainty_planning_core::PLANNING_AND_EXECUTION_OPTIONS options = se3_common_config::GetOptions();
     const config_common::TASK_CONFIG_PARAMS extra_options = se3_common_config::GetExtraOptions();
-    std::cout << PrettyPrint::PrettyPrint(options) << PrettyPrint::PrettyPrint(extra_options) << std::endl;
+    std::cout << PrettyPrint::PrettyPrint(options) << "\n" << PrettyPrint::PrettyPrint(extra_options) << std::endl;
     const std::pair<uncertainty_planning_core::SE3Config, uncertainty_planning_core::SE3Config> start_and_goal = se3_common_config::GetStartAndGoal();
     const uncertainty_planning_core::SE3SamplerPtr sampler = se3_common_config::GetSampler();
     const simple_robot_models::SE3_ROBOT_CONFIG robot_config = se3_common_config::GetDefaultRobotConfig(extra_options);
@@ -41,7 +41,7 @@ void demonstrate_se2(ros::Publisher& display_debug_publisher)
     std::cout << "Demonstrating SE(2)..." << std::endl;
     const uncertainty_planning_core::PLANNING_AND_EXECUTION_OPTIONS options = se2_common_config::GetOptions();
     const config_common::TASK_CONFIG_PARAMS extra_options = se2_common_config::GetExtraOptions();
-    std::cout << PrettyPrint::PrettyPrint(options) << PrettyPrint::PrettyPrint(extra_options) << std::endl;
+    std::cout << PrettyPrint::PrettyPrint(options) << "\n" << PrettyPrint::PrettyPrint(extra_options) << std::endl;
     const std::pair<uncertainty_planning_core::SE2Config, uncertainty_planning_core::SE2Config> start_and_goal = se2_common_config::GetStartAndGoal();
     const uncertainty_planning_core::SE2SamplerPtr sampler = se2_common_config::GetSampler();
     const simple_robot_models::SE2_ROBOT_CONFIG robot_config = se2_common_config::GetDefaultRobotConfig(extra_options);
@@ -55,7 +55,7 @@ void demonstrate_baxter(ros::Publisher& display_debug_publisher)
     std::cout << "Demonstrating Baxter..." << std::endl;
     const uncertainty_planning_core::PLANNING_AND_EXECUTION_OPTIONS options = baxter_linked_common_config::GetOptions();
     const config_common::TASK_CONFIG_PARAMS extra_options = baxter_linked_common_config::GetExtraOptions();
-    std::cout << PrettyPrint::PrettyPrint(options) << PrettyPrint::PrettyPrint(extra_options) << std::endl;
+    std::cout << PrettyPrint::PrettyPrint(options) << "\n" << PrettyPrint::PrettyPrint(extra_options) << std::endl;
     const std::vector<double> joint_uncertainty_params = baxter_linked_common_config::GetJointUncertaintyParams(extra_options);
     assert(joint_uncertainty_params.size() == 7);
     const std::vector<double> joint_distance_weights = baxter_linked_common_config::GetJointDistanceWeights();
@@ -74,7 +74,7 @@ void demonstrate_ur5(ros::Publisher& display_debug_publisher)
     std::cout << "Demonstrating UR5..." << std::endl;
     const uncertainty_planning_core::PLANNING_AND_EXECUTION_OPTIONS options = ur5_linked_common_config::GetOptions();
     const config_common::TASK_CONFIG_PARAMS extra_options = ur5_linked_common_config::GetExtraOptions();
-    std::cout << PrettyPrint::PrettyPrint(options) << PrettyPrint::PrettyPrint(extra_options) << std::endl;
+    std::cout << PrettyPrint::PrettyPrint(options) << "\n" << PrettyPrint::PrettyPrint(extra_options) << std::endl;
     const std::vector<double> joint_uncertainty_params = ur5_linked_common_config::GetJointUncertaintyParams(extra_options);
     assert(joint_uncertainty_params.size() == 6);
     const std::vector<double> joint_distance_weights = ur5_linked_common_config::GetJointDistanceWeights();
