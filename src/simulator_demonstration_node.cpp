@@ -17,6 +17,7 @@
 #include <uncertainty_planning_examples/se3_common_config.hpp>
 #include <uncertainty_planning_examples/baxter_common_config.hpp>
 #include <uncertainty_planning_examples/ur5_common_config.hpp>
+#include <uncertainty_planning_examples/iiwa7_common_config.hpp>
 #include <ros/ros.h>
 #include <visualization_msgs/MarkerArray.h>
 
@@ -88,6 +89,25 @@ void demonstrate_ur5(ros::Publisher& display_debug_publisher)
     uncertainty_planning_core::DemonstrateLinkedSimulator(options, robot, simulator, sampler, start_and_goal.first, start_and_goal.second, display_debug_publisher);
 }
 
+void demonstrate_iiwa7(ros::Publisher& display_debug_publisher)
+{
+    std::cout << "Demonstrating IIWA7..." << std::endl;
+    const uncertainty_planning_core::PLANNING_AND_EXECUTION_OPTIONS options = iiwa7_linked_common_config::GetOptions();
+    const config_common::TASK_CONFIG_PARAMS extra_options = iiwa7_linked_common_config::GetExtraOptions();
+    std::cout << PrettyPrint::PrettyPrint(options) << "\n" << PrettyPrint::PrettyPrint(extra_options) << std::endl;
+    const std::vector<double> joint_uncertainty_params = iiwa7_linked_common_config::GetJointUncertaintyParams(extra_options);
+    assert(joint_uncertainty_params.size() == 7);
+    const std::vector<double> joint_distance_weights = iiwa7_linked_common_config::GetJointDistanceWeights();
+    assert(joint_distance_weights.size() == 7);
+    const std::pair<uncertainty_planning_core::LinkedConfig, uncertainty_planning_core::LinkedConfig> start_and_goal = iiwa7_linked_common_config::GetStartAndGoal();
+    const uncertainty_planning_core::LinkedSamplerPtr sampler = iiwa7_linked_common_config::GetSampler();
+    const simple_robot_models::LINKED_ROBOT_CONFIG robot_config = iiwa7_linked_common_config::GetDefaultRobotConfig(extra_options);
+    const Eigen::Affine3d base_transform = iiwa7_linked_common_config::GetBaseTransform();
+    const uncertainty_planning_core::LinkedRobot robot = iiwa7_linked_common_config::GetRobot(base_transform, robot_config, joint_uncertainty_params, joint_distance_weights, extra_options.environment_id);
+    const uncertainty_planning_core::LinkedSimulatorPtr simulator = iiwa7_linked_common_config::GetSimulator(extra_options, options.debug_level);
+    uncertainty_planning_core::DemonstrateLinkedSimulator(options, robot, simulator, sampler, start_and_goal.first, start_and_goal.second, display_debug_publisher);
+}
+
 int main(int argc, char** argv)
 {
     ros::init(argc, argv, "simulator_demonstration_node");
@@ -112,6 +132,10 @@ int main(int argc, char** argv)
     else if (robot_type == "ur5")
     {
         demonstrate_ur5(display_debug_publisher);
+    }
+    else if (robot_type == "iiwa7")
+    {
+        demonstrate_iiwa7(display_debug_publisher);
     }
     else
     {

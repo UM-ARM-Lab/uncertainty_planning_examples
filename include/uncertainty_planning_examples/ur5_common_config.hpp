@@ -162,67 +162,67 @@ namespace ur5_linked_common_config
         return distance_weights;
     }
 
-    inline void MakeCylinderPoints(const double radius, const double length, const double resolution, const Eigen::Vector3d& axis, const std::shared_ptr<EigenHelpers::VectorVector3d>& points)
+    inline void MakeCylinderPoints(const double radius, const double length, const double resolution, const Eigen::Vector3d& axis, const std::shared_ptr<EigenHelpers::VectorVector4d>& points)
     {
         UNUSED(radius);
         UNUSED(length);
         UNUSED(axis);
-        points->push_back(Eigen::Vector3d(0.0, 0.0, 0.0));
-        points->push_back(Eigen::Vector3d(resolution, 0.0, 0.0));
-        points->push_back(Eigen::Vector3d(0.0, resolution, 0.0));
-        points->push_back(Eigen::Vector3d(0.0, resolution * 2.0, 0.0));
-        points->push_back(Eigen::Vector3d(0.0, 0.0, resolution));
-        points->push_back(Eigen::Vector3d(0.0, 0.0, resolution * 2.0));
-        points->push_back(Eigen::Vector3d(0.0, 0.0, resolution * 3.0));
+        points->push_back(Eigen::Vector4d(0.0, 0.0, 0.0, 1.0));
+        points->push_back(Eigen::Vector4d(resolution, 0.0, 0.0, 1.0));
+        points->push_back(Eigen::Vector4d(0.0, resolution, 0.0, 1.0));
+        points->push_back(Eigen::Vector4d(0.0, resolution * 2.0, 0.0, 1.0));
+        points->push_back(Eigen::Vector4d(0.0, 0.0, resolution, 1.0));
+        points->push_back(Eigen::Vector4d(0.0, 0.0, resolution * 2.0, 1.0));
+        points->push_back(Eigen::Vector4d(0.0, 0.0, resolution * 3.0, 1.0));
     }
 
-    inline std::shared_ptr<EigenHelpers::VectorVector3d> GetLinkPoints(const std::string& link_name)
+    inline std::shared_ptr<EigenHelpers::VectorVector4d> GetLinkPoints(const std::string& link_name)
     {
         if (link_name == "base_link")
         {
-            std::shared_ptr<EigenHelpers::VectorVector3d> link_points(new EigenHelpers::VectorVector3d());
+            std::shared_ptr<EigenHelpers::VectorVector4d> link_points(new EigenHelpers::VectorVector4d());
             MakeCylinderPoints(0.06, 0.05, RESOLUTION, Eigen::Vector3d::UnitZ(), link_points);
             return link_points;
         }
         else if (link_name == "shoulder_link")
         {
-            std::shared_ptr<EigenHelpers::VectorVector3d> link_points(new EigenHelpers::VectorVector3d());
+            std::shared_ptr<EigenHelpers::VectorVector4d> link_points(new EigenHelpers::VectorVector4d());
             MakeCylinderPoints(0.06, 0.05, RESOLUTION, Eigen::Vector3d::UnitZ(), link_points);
             return link_points;
         }
         else if (link_name == "upper_arm_link")
         {
-            std::shared_ptr<EigenHelpers::VectorVector3d> link_points(new EigenHelpers::VectorVector3d());
+            std::shared_ptr<EigenHelpers::VectorVector4d> link_points(new EigenHelpers::VectorVector4d());
             MakeCylinderPoints(0.06, 0.05, RESOLUTION, Eigen::Vector3d::UnitZ(), link_points);
             return link_points;
         }
         else if (link_name == "forearm_link")
         {
-            std::shared_ptr<EigenHelpers::VectorVector3d> link_points(new EigenHelpers::VectorVector3d());
+            std::shared_ptr<EigenHelpers::VectorVector4d> link_points(new EigenHelpers::VectorVector4d());
             MakeCylinderPoints(0.06, 0.05, RESOLUTION, Eigen::Vector3d::UnitZ(), link_points);
             return link_points;
         }
         else if (link_name == "wrist_1_link")
         {
-            std::shared_ptr<EigenHelpers::VectorVector3d> link_points(new EigenHelpers::VectorVector3d());
+            std::shared_ptr<EigenHelpers::VectorVector4d> link_points(new EigenHelpers::VectorVector4d());
             MakeCylinderPoints(0.6, 0.12, RESOLUTION, Eigen::Vector3d::UnitY(), link_points);
             return link_points;
         }
         else if (link_name == "wrist_2_link")
         {
-            std::shared_ptr<EigenHelpers::VectorVector3d> link_points(new EigenHelpers::VectorVector3d());
+            std::shared_ptr<EigenHelpers::VectorVector4d> link_points(new EigenHelpers::VectorVector4d());
             MakeCylinderPoints(0.6, 0.12, RESOLUTION, Eigen::Vector3d::UnitZ(), link_points);
             return link_points;
         }
         else if (link_name == "wrist_3_link")
         {
-            std::shared_ptr<EigenHelpers::VectorVector3d> link_points(new EigenHelpers::VectorVector3d());
+            std::shared_ptr<EigenHelpers::VectorVector4d> link_points(new EigenHelpers::VectorVector4d());
             MakeCylinderPoints(0.05, 0.0823, RESOLUTION, Eigen::Vector3d::UnitY(), link_points);
             return link_points;
         }
         else if (link_name == "ee_link")
         {
-            std::shared_ptr<EigenHelpers::VectorVector3d> link_points(new EigenHelpers::VectorVector3d());
+            std::shared_ptr<EigenHelpers::VectorVector4d> link_points(new EigenHelpers::VectorVector4d());
             MakeCylinderPoints(RESOLUTION * 0.5, RESOLUTION * 0.5, RESOLUTION, Eigen::Vector3d::UnitX(), link_points);
             return link_points;
         }
