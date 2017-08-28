@@ -95,7 +95,6 @@ namespace se3_common_config
         return robot_config;
     }
 
-<<<<<<< HEAD
     inline Eigen::Isometry3d MakeConfig(const Eigen::Translation3d& translation, const Eigen::Quaterniond& rotation)
     {
         const Eigen::Isometry3d config = translation * rotation;
@@ -107,19 +106,6 @@ namespace se3_common_config
         // Define the goals of the plan
         const Eigen::Isometry3d start = MakeConfig(Eigen::Translation3d(9.0, 9.0, 9.0), Eigen::Quaterniond::Identity());
         const Eigen::Isometry3d goal = MakeConfig(Eigen::Translation3d(2.25, 2.25, 0.625), Eigen::Quaterniond::Identity());
-=======
-    inline Eigen::Affine3d MakeConfig(const Eigen::Translation3d& translation, const Eigen::Quaterniond& rotation)
-    {
-        const Eigen::Affine3d config = translation * rotation;
-        return config;
-    }
-
-    inline std::pair<Eigen::Affine3d, Eigen::Affine3d> GetStartAndGoal()
-    {
-        // Define the goals of the plan
-        const Eigen::Affine3d start = MakeConfig(Eigen::Translation3d(9.0, 9.0, 9.0), Eigen::Quaterniond::Identity());
-        const Eigen::Affine3d goal = MakeConfig(Eigen::Translation3d(2.25, 2.25, 0.625), Eigen::Quaterniond::Identity());
->>>>>>> af1c2d8f7be668be172df906fc408c7ed93ecdf2
         return std::make_pair(start, goal);
     }
 
