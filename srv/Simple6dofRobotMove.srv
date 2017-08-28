@@ -7,5 +7,8 @@ float64 execution_shortcut_distance
 duration time_limit
 geometry_msgs/PoseStamped start
 geometry_msgs/PoseStamped target
+ControllerMode control_mode
+string file_path
+ContactInfo[] contact_info
 ---
 geometry_msgs/PoseStamped[] trajectory

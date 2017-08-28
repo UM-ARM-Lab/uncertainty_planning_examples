@@ -41,12 +41,21 @@ class ExecuteServer(object):
             rospy.loginfo("Resetting to " + str(request.start))
             self.command_stop()
             rospy.sleep(2.5)
+            print "first time tele"
             self.command_teleport(request.start)
             trajectory = [request.start]
+            # rospy.sleep(2.5)
+            # self.command_stop()
+            # rospy.sleep(2.5)
+            # print "second time tele"
+            # self.command_teleport(request.start)
         elif request.mode == uncertainty_planning_examples.srv.Simple6dofRobotMoveRequest.EXECUTE:
             rospy.loginfo("Executing to " + str(request.target))
             robot_target = request.target
-            trajectory = self.command_to_target(robot_target, request.time_limit, request.execution_shortcut_distance)
+            control_mode = request.control_mode
+            file_path = request.file_path
+            contact_info = request.contact_info
+            trajectory = self.command_to_target(robot_target, request.time_limit, control_mode, file_path, contact_info)
         elif request.mode == uncertainty_planning_examples.srv.Simple6dofRobotMoveRequest.EXECUTE_FROM_START:
             rospy.loginfo("First, resetting to " + str(request.start))
             self.command_stop()
@@ -54,7 +63,7 @@ class ExecuteServer(object):
             self.command_teleport(request.start)
             rospy.loginfo("Executing to " + str(request.target))
             robot_target = request.target
-            trajectory = self.command_to_target(robot_target, request.time_limit, request.execution_shortcut_distance)
+            trajectory = self.command_to_target(robot_target, request.time_limit)
         else:
             rospy.logerr("Invalid mode command")
             trajectory = []
@@ -62,7 +71,7 @@ class ExecuteServer(object):
         response = uncertainty_planning_examples.srv.Simple6dofRobotMoveResponse()
         response.trajectory = trajectory
         rospy.loginfo("Response with " + str(len(response.trajectory)) + " states")
-        rospy.loginfo("Reached " + str(response.trajectory[-1]))
+        # rospy.loginfo("Reached " + str(response.trajectory[-1]))
         return response
 
     def command_teleport(self, target_pose):
@@ -70,21 +79,25 @@ class ExecuteServer(object):
         req.target_pose = target_pose
         self.teleport_client.call(req)
 
-    def command_to_target(self, target_pose, time_limit, execution_shortcut_distance):
+    def command_to_target(self, target_pose, time_limit, control_mode = [], file_path = "", contact_info = []):
         goal = thruster_robot_controllers.msg.GoToPoseTargetGoal()
         goal.max_execution_time = time_limit
         goal.target_pose = target_pose
-        goal.execution_shortcut_distance = execution_shortcut_distance
+        goal.control_mode = control_mode
+        goal.file_path = file_path
+        goal.contact_info = contact_info
         self.command_action_client.send_goal(goal)
         self.command_action_client.wait_for_result()
         result = self.command_action_client.get_result()
         return result.trajectory
 
     def command_stop(self):
+        self.command_action_client.cancel_all_goals()
         req = std_srvs.srv.EmptyRequest()
         self.abort_client.call(req)
 
 if __name__ == '__main__':
     rospy.init_node("simple6dof_execute_server")
     rospy.loginfo("Starting...")
-    ExecuteServer("simple_6dof_robot_move", "vehicle_bus/go_to_target_pose", "vehicle_bus/target_pose/abort", "vehicle_bus/bus/teleport")
+    ExecuteServer("simple_6dof_robot_move", "vehicle_bus/go_to_target_pose", "vehicle_bus/shim_abort", "vehicle_bus/bus/teleport")
+    # ExecuteServer("simple_6dof_robot_move", "vehicle_bus/go_to_target_pose", "vehicle_bus/target_pose/abort", "vehicle_bus/bus/teleport")

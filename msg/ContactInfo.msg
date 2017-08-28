@@ -1,0 +1,4 @@
+Header header
+geometry_msgs/Point contact_point
+geometry_msgs/Point contact_normal
+float64 contact_force

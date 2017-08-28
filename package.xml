@@ -31,7 +31,6 @@
   <run_depend>uncertainty_planning_core</run_depend>
   <run_depend>fast_kinematic_simulator</run_depend>
   <run_depend>message_runtime</run_depend>
-
   <!-- The export tag contains other, unspecified, tags -->
   <export>
     <!-- You can specify that this package is a metapackage here: -->

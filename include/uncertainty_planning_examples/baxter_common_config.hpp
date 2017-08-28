@@ -96,9 +96,9 @@ namespace baxter_linked_common_config
         return robot_config;
     }
 
-    inline Eigen::Affine3d GetBaseTransform()
+    inline Eigen::Isometry3d GetBaseTransform()
     {
-        const Eigen::Affine3d base_transform = Eigen::Translation3d(0.0, 0.0, 0.0) * Eigen::Quaterniond(Eigen::AngleAxisd(0.0, Eigen::Vector3d::UnitZ()));
+        const Eigen::Isometry3d base_transform = Eigen::Translation3d(0.0, 0.0, 0.0) * Eigen::Quaterniond(Eigen::AngleAxisd(0.0, Eigen::Vector3d::UnitZ()));
         return base_transform;
     }
 
@@ -180,67 +180,67 @@ namespace baxter_linked_common_config
         if (environment_id == "baxter_wrist_key_env")
         {
             // Key
-            end_effector_link.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.175));
-            end_effector_link.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.2));
-            end_effector_link.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.225));
-            end_effector_link.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.25));
+            end_effector_link.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.175, 1.0));
+            end_effector_link.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.2, 1.0));
+            end_effector_link.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.225, 1.0));
+            end_effector_link.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.25, 1.0));
             //
-            end_effector_link.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.275));
-            end_effector_link.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.3));
-            end_effector_link.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.325));
-            end_effector_link.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.35));
+            end_effector_link.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.275, 1.0));
+            end_effector_link.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.3, 1.0));
+            end_effector_link.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.325, 1.0));
+            end_effector_link.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.35, 1.0));
             //
-            end_effector_link.link_points->push_back(Eigen::Vector3d(0.0, 0.025, 0.275));
-            end_effector_link.link_points->push_back(Eigen::Vector3d(0.0, 0.025, 0.3));
-            end_effector_link.link_points->push_back(Eigen::Vector3d(0.0, 0.025, 0.325));
-            end_effector_link.link_points->push_back(Eigen::Vector3d(0.0, 0.025, 0.35));
+            end_effector_link.link_points->push_back(Eigen::Vector4d(0.0, 0.025, 0.275, 1.0));
+            end_effector_link.link_points->push_back(Eigen::Vector4d(0.0, 0.025, 0.3, 1.0));
+            end_effector_link.link_points->push_back(Eigen::Vector4d(0.0, 0.025, 0.325, 1.0));
+            end_effector_link.link_points->push_back(Eigen::Vector4d(0.0, 0.025, 0.35, 1.0));
             //
-            end_effector_link.link_points->push_back(Eigen::Vector3d(0.0, 0.05, 0.275));
-            end_effector_link.link_points->push_back(Eigen::Vector3d(0.0, 0.05, 0.3));
-            end_effector_link.link_points->push_back(Eigen::Vector3d(0.0, 0.05, 0.325));
-            end_effector_link.link_points->push_back(Eigen::Vector3d(0.0, 0.05, 0.35));
+            end_effector_link.link_points->push_back(Eigen::Vector4d(0.0, 0.05, 0.275, 1.0));
+            end_effector_link.link_points->push_back(Eigen::Vector4d(0.0, 0.05, 0.3, 1.0));
+            end_effector_link.link_points->push_back(Eigen::Vector4d(0.0, 0.05, 0.325, 1.0));
+            end_effector_link.link_points->push_back(Eigen::Vector4d(0.0, 0.05, 0.35, 1.0));
             //
-            end_effector_link.link_points->push_back(Eigen::Vector3d(0.0, 0.075, 0.275));
-            end_effector_link.link_points->push_back(Eigen::Vector3d(0.0, 0.075, 0.3));
-            end_effector_link.link_points->push_back(Eigen::Vector3d(0.0, 0.075, 0.325));
-            end_effector_link.link_points->push_back(Eigen::Vector3d(0.0, 0.075, 0.35));
+            end_effector_link.link_points->push_back(Eigen::Vector4d(0.0, 0.075, 0.275, 1.0));
+            end_effector_link.link_points->push_back(Eigen::Vector4d(0.0, 0.075, 0.3, 1.0));
+            end_effector_link.link_points->push_back(Eigen::Vector4d(0.0, 0.075, 0.325, 1.0));
+            end_effector_link.link_points->push_back(Eigen::Vector4d(0.0, 0.075, 0.35, 1.0));
             //
-            end_effector_link.link_points->push_back(Eigen::Vector3d(0.025, 0.0, 0.275));
-            end_effector_link.link_points->push_back(Eigen::Vector3d(0.025, 0.0, 0.3));
-            end_effector_link.link_points->push_back(Eigen::Vector3d(0.025, 0.0, 0.325));
-            end_effector_link.link_points->push_back(Eigen::Vector3d(0.025, 0.0, 0.35));
+            end_effector_link.link_points->push_back(Eigen::Vector4d(0.025, 0.0, 0.275, 1.0));
+            end_effector_link.link_points->push_back(Eigen::Vector4d(0.025, 0.0, 0.3, 1.0));
+            end_effector_link.link_points->push_back(Eigen::Vector4d(0.025, 0.0, 0.325, 1.0));
+            end_effector_link.link_points->push_back(Eigen::Vector4d(0.025, 0.0, 0.35, 1.0));
             //
-            end_effector_link.link_points->push_back(Eigen::Vector3d(0.05, 0.0, 0.275));
-            end_effector_link.link_points->push_back(Eigen::Vector3d(0.05, 0.0, 0.3));
-            end_effector_link.link_points->push_back(Eigen::Vector3d(0.05, 0.0, 0.325));
-            end_effector_link.link_points->push_back(Eigen::Vector3d(0.05, 0.0, 0.35));
+            end_effector_link.link_points->push_back(Eigen::Vector4d(0.05, 0.0, 0.275, 1.0));
+            end_effector_link.link_points->push_back(Eigen::Vector4d(0.05, 0.0, 0.3, 1.0));
+            end_effector_link.link_points->push_back(Eigen::Vector4d(0.05, 0.0, 0.325, 1.0));
+            end_effector_link.link_points->push_back(Eigen::Vector4d(0.05, 0.0, 0.35, 1.0));
             //
-            end_effector_link.link_points->push_back(Eigen::Vector3d(0.075, 0.0, 0.275));
-            end_effector_link.link_points->push_back(Eigen::Vector3d(0.075, 0.0, 0.3));
-            end_effector_link.link_points->push_back(Eigen::Vector3d(0.075, 0.0, 0.325));
-            end_effector_link.link_points->push_back(Eigen::Vector3d(0.075, 0.0, 0.35));
+            end_effector_link.link_points->push_back(Eigen::Vector4d(0.075, 0.0, 0.275, 1.0));
+            end_effector_link.link_points->push_back(Eigen::Vector4d(0.075, 0.0, 0.3, 1.0));
+            end_effector_link.link_points->push_back(Eigen::Vector4d(0.075, 0.0, 0.325, 1.0));
+            end_effector_link.link_points->push_back(Eigen::Vector4d(0.075, 0.0, 0.35, 1.0));
         }
         else if (environment_id == "baxter_blocked_test_env")
         {
             // Peg
-            end_effector_link.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.175));
-            end_effector_link.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.2));
-            end_effector_link.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.225));
-            end_effector_link.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.24));
+            end_effector_link.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.175, 1.0));
+            end_effector_link.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.2, 1.0));
+            end_effector_link.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.225, 1.0));
+            end_effector_link.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.24, 1.0));
         }
         else
         {
             // Peg
-            end_effector_link.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.175));
-            end_effector_link.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.2));
-            end_effector_link.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.225));
-            end_effector_link.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.25));
+            end_effector_link.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.175, 1.0));
+            end_effector_link.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.2, 1.0));
+            end_effector_link.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.225, 1.0));
+            end_effector_link.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.25, 1.0));
         }
     }
 
     typedef uncertainty_planning_core::LinkedActuatorModel BaxterJointActuatorModel;
 
-    inline simple_robot_models::SimpleLinkedRobot<BaxterJointActuatorModel> GetRobot(const Eigen::Affine3d& base_transform, const simple_robot_models::LINKED_ROBOT_CONFIG& joint_config, const std::vector<double>& joint_uncertainty_params, const std::vector<double>& joint_distance_weights, const std::string& environment_id)
+    inline simple_robot_models::SimpleLinkedRobot<BaxterJointActuatorModel> GetRobot(const Eigen::Isometry3d& base_transform, const simple_robot_models::LINKED_ROBOT_CONFIG& joint_config, const std::vector<double>& joint_uncertainty_params, const std::vector<double>& joint_distance_weights, const std::string& environment_id)
     {
         const double s0_noise = joint_uncertainty_params[0];
         const double s1_noise = joint_uncertainty_params[1];
@@ -254,105 +254,105 @@ namespace baxter_linked_common_config
         // Make the robot model
         simple_robot_models::RobotLink torso;
         torso.link_name = "torso";
-        torso.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.0));
-        torso.link_points->push_back(Eigen::Vector3d(0.025, 0.0, 0.0));
-        torso.link_points->push_back(Eigen::Vector3d(0.0, 0.025, 0.0));
-        torso.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.025));
-        torso.link_points->push_back(Eigen::Vector3d(0.0, -0.025, 0.0));
-        torso.link_points->push_back(Eigen::Vector3d(0.0, -0.05, 0.0));
-        torso.link_points->push_back(Eigen::Vector3d(0.0, -0.075, 0.0));
-        torso.link_points->push_back(Eigen::Vector3d(0.0, -0.1, 0.0));
-        torso.link_points->push_back(Eigen::Vector3d(0.0, -0.125, 0.0));
-        torso.link_points->push_back(Eigen::Vector3d(0.0, -0.15, 0.0));
-        torso.link_points->push_back(Eigen::Vector3d(0.0, -0.175, 0.0));
-        torso.link_points->push_back(Eigen::Vector3d(0.0, -0.2, 0.0));
-        torso.link_points->push_back(Eigen::Vector3d(0.0, -0.225, 0.0));
-        torso.link_points->push_back(Eigen::Vector3d(0.0, -0.225, 0.025));
-        torso.link_points->push_back(Eigen::Vector3d(0.0, -0.225, 0.05));
-        torso.link_points->push_back(Eigen::Vector3d(0.0, -0.225, 0.075));
-        torso.link_points->push_back(Eigen::Vector3d(0.0, -0.225, 0.1));
-        torso.link_points->push_back(Eigen::Vector3d(0.025, -0.225, 0.1));
+        torso.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.0, 1.0));
+        torso.link_points->push_back(Eigen::Vector4d(0.025, 0.0, 0.0, 1.0));
+        torso.link_points->push_back(Eigen::Vector4d(0.0, 0.025, 0.0, 1.0));
+        torso.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.025, 1.0));
+        torso.link_points->push_back(Eigen::Vector4d(0.0, -0.025, 0.0, 1.0));
+        torso.link_points->push_back(Eigen::Vector4d(0.0, -0.05, 0.0, 1.0));
+        torso.link_points->push_back(Eigen::Vector4d(0.0, -0.075, 0.0, 1.0));
+        torso.link_points->push_back(Eigen::Vector4d(0.0, -0.1, 0.0, 1.0));
+        torso.link_points->push_back(Eigen::Vector4d(0.0, -0.125, 0.0, 1.0));
+        torso.link_points->push_back(Eigen::Vector4d(0.0, -0.15, 0.0, 1.0));
+        torso.link_points->push_back(Eigen::Vector4d(0.0, -0.175, 0.0, 1.0));
+        torso.link_points->push_back(Eigen::Vector4d(0.0, -0.2, 0.0, 1.0));
+        torso.link_points->push_back(Eigen::Vector4d(0.0, -0.225, 0.0, 1.0));
+        torso.link_points->push_back(Eigen::Vector4d(0.0, -0.225, 0.025, 1.0));
+        torso.link_points->push_back(Eigen::Vector4d(0.0, -0.225, 0.05, 1.0));
+        torso.link_points->push_back(Eigen::Vector4d(0.0, -0.225, 0.075, 1.0));
+        torso.link_points->push_back(Eigen::Vector4d(0.0, -0.225, 0.1, 1.0));
+        torso.link_points->push_back(Eigen::Vector4d(0.025, -0.225, 0.1, 1.0));
         simple_robot_models::RobotLink right_arm_mount;
         right_arm_mount.link_name = "right_arm_mount";
-        right_arm_mount.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.0));
-        right_arm_mount.link_points->push_back(Eigen::Vector3d(0.025, 0.0, 0.0));
-        right_arm_mount.link_points->push_back(Eigen::Vector3d(0.05, 0.0, 0.0));
+        right_arm_mount.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.0, 1.0));
+        right_arm_mount.link_points->push_back(Eigen::Vector4d(0.025, 0.0, 0.0, 1.0));
+        right_arm_mount.link_points->push_back(Eigen::Vector4d(0.05, 0.0, 0.0, 1.0));
         simple_robot_models::RobotLink right_upper_shoulder;
         right_upper_shoulder.link_name = "right_upper_shoulder";
-        right_upper_shoulder.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.0));
-        right_upper_shoulder.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.025));
-        right_upper_shoulder.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.05));
-        right_upper_shoulder.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.075));
-        right_upper_shoulder.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.1));
-        right_upper_shoulder.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.125));
-        right_upper_shoulder.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.15));
-        right_upper_shoulder.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.175));
-        right_upper_shoulder.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.2));
-        right_upper_shoulder.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.225));
-        right_upper_shoulder.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.25));
-        right_upper_shoulder.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.275));
-        right_upper_shoulder.link_points->push_back(Eigen::Vector3d(0.025, 0.0, 0.275));
-        right_upper_shoulder.link_points->push_back(Eigen::Vector3d(0.05, 0.0, 0.275));
+        right_upper_shoulder.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.0, 1.0));
+        right_upper_shoulder.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.025, 1.0));
+        right_upper_shoulder.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.05, 1.0));
+        right_upper_shoulder.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.075, 1.0));
+        right_upper_shoulder.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.1, 1.0));
+        right_upper_shoulder.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.125, 1.0));
+        right_upper_shoulder.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.15, 1.0));
+        right_upper_shoulder.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.175, 1.0));
+        right_upper_shoulder.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.2, 1.0));
+        right_upper_shoulder.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.225, 1.0));
+        right_upper_shoulder.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.25, 1.0));
+        right_upper_shoulder.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.275, 1.0));
+        right_upper_shoulder.link_points->push_back(Eigen::Vector4d(0.025, 0.0, 0.275, 1.0));
+        right_upper_shoulder.link_points->push_back(Eigen::Vector4d(0.05, 0.0, 0.275, 1.0));
         simple_robot_models::RobotLink right_lower_shoulder;
         right_lower_shoulder.link_name = "right_lower_shoulder";
-        right_lower_shoulder.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.0));
-        right_lower_shoulder.link_points->push_back(Eigen::Vector3d(0.025, 0.0, 0.0));
-        right_lower_shoulder.link_points->push_back(Eigen::Vector3d(0.05, 0.0, 0.0));
-        right_lower_shoulder.link_points->push_back(Eigen::Vector3d(0.075, 0.0, 0.0));
-        right_lower_shoulder.link_points->push_back(Eigen::Vector3d(0.1, 0.0, 0.0));
+        right_lower_shoulder.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.0, 1.0));
+        right_lower_shoulder.link_points->push_back(Eigen::Vector4d(0.025, 0.0, 0.0, 1.0));
+        right_lower_shoulder.link_points->push_back(Eigen::Vector4d(0.05, 0.0, 0.0, 1.0));
+        right_lower_shoulder.link_points->push_back(Eigen::Vector4d(0.075, 0.0, 0.0, 1.0));
+        right_lower_shoulder.link_points->push_back(Eigen::Vector4d(0.1, 0.0, 0.0, 1.0));
         simple_robot_models::RobotLink right_upper_elbow;
         right_upper_elbow.link_name = "right_upper_elbow";
-        right_upper_elbow.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.0));
-        right_upper_elbow.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.025));
-        right_upper_elbow.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.05));
-        right_upper_elbow.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.075));
-        right_upper_elbow.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.1));
-        right_upper_elbow.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.125));
-        right_upper_elbow.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.15));
-        right_upper_elbow.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.175));
-        right_upper_elbow.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.2));
-        right_upper_elbow.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.225));
-        right_upper_elbow.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.25));
-        right_upper_elbow.link_points->push_back(Eigen::Vector3d(0.025, 0.0, 0.25));
-        right_upper_elbow.link_points->push_back(Eigen::Vector3d(0.05, 0.0, 0.25));
+        right_upper_elbow.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.0, 1.0));
+        right_upper_elbow.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.025, 1.0));
+        right_upper_elbow.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.05, 1.0));
+        right_upper_elbow.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.075, 1.0));
+        right_upper_elbow.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.1, 1.0));
+        right_upper_elbow.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.125, 1.0));
+        right_upper_elbow.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.15, 1.0));
+        right_upper_elbow.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.175, 1.0));
+        right_upper_elbow.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.2, 1.0));
+        right_upper_elbow.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.225, 1.0));
+        right_upper_elbow.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.25, 1.0));
+        right_upper_elbow.link_points->push_back(Eigen::Vector4d(0.025, 0.0, 0.25, 1.0));
+        right_upper_elbow.link_points->push_back(Eigen::Vector4d(0.05, 0.0, 0.25, 1.0));
         simple_robot_models::RobotLink right_lower_elbow;
         right_lower_elbow.link_name = "right_lower_elbow";
-        right_lower_elbow.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.0));
-        right_lower_elbow.link_points->push_back(Eigen::Vector3d(0.025, 0.0, 0.0));
-        right_lower_elbow.link_points->push_back(Eigen::Vector3d(0.05, 0.0, 0.0));
-        right_lower_elbow.link_points->push_back(Eigen::Vector3d(0.075, 0.0, 0.0));
-        right_lower_elbow.link_points->push_back(Eigen::Vector3d(0.1, 0.0, 0.0));
+        right_lower_elbow.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.0, 1.0));
+        right_lower_elbow.link_points->push_back(Eigen::Vector4d(0.025, 0.0, 0.0, 1.0));
+        right_lower_elbow.link_points->push_back(Eigen::Vector4d(0.05, 0.0, 0.0, 1.0));
+        right_lower_elbow.link_points->push_back(Eigen::Vector4d(0.075, 0.0, 0.0, 1.0));
+        right_lower_elbow.link_points->push_back(Eigen::Vector4d(0.1, 0.0, 0.0, 1.0));
         simple_robot_models::RobotLink right_upper_forearm;
         right_upper_forearm.link_name = "right_upper_forearm";
-        right_upper_forearm.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.0));
-        right_upper_forearm.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.025));
-        right_upper_forearm.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.05));
-        right_upper_forearm.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.075));
-        right_upper_forearm.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.1));
-        right_upper_forearm.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.125));
-        right_upper_forearm.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.15));
-        right_upper_forearm.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.175));
-        right_upper_forearm.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.2));
-        right_upper_forearm.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.225));
-        right_upper_forearm.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.25));
-        right_upper_forearm.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.275));
+        right_upper_forearm.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.0, 1.0));
+        right_upper_forearm.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.025, 1.0));
+        right_upper_forearm.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.05, 1.0));
+        right_upper_forearm.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.075, 1.0));
+        right_upper_forearm.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.1, 1.0));
+        right_upper_forearm.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.125, 1.0));
+        right_upper_forearm.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.15, 1.0));
+        right_upper_forearm.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.175, 1.0));
+        right_upper_forearm.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.2, 1.0));
+        right_upper_forearm.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.225, 1.0));
+        right_upper_forearm.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.25, 1.0));
+        right_upper_forearm.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.275, 1.0));
         simple_robot_models::RobotLink right_lower_forearm;
         right_lower_forearm.link_name = "right_lower_forearm";
-        right_lower_forearm.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.0));
-        right_lower_forearm.link_points->push_back(Eigen::Vector3d(0.025, 0.0, 0.0));
-        right_lower_forearm.link_points->push_back(Eigen::Vector3d(0.05, 0.0, 0.0));
-        right_lower_forearm.link_points->push_back(Eigen::Vector3d(0.075, 0.0, 0.0));
-        right_lower_forearm.link_points->push_back(Eigen::Vector3d(0.1, 0.0, 0.0));
-        right_lower_forearm.link_points->push_back(Eigen::Vector3d(0.125, 0.0, 0.0));
+        right_lower_forearm.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.0, 1.0));
+        right_lower_forearm.link_points->push_back(Eigen::Vector4d(0.025, 0.0, 0.0, 1.0));
+        right_lower_forearm.link_points->push_back(Eigen::Vector4d(0.05, 0.0, 0.0, 1.0));
+        right_lower_forearm.link_points->push_back(Eigen::Vector4d(0.075, 0.0, 0.0, 1.0));
+        right_lower_forearm.link_points->push_back(Eigen::Vector4d(0.1, 0.0, 0.0, 1.0));
+        right_lower_forearm.link_points->push_back(Eigen::Vector4d(0.125, 0.0, 0.0, 1.0));
         simple_robot_models::RobotLink right_wrist;
         right_wrist.link_name = "right_wrist";
-        right_wrist.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.0));
-        right_wrist.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.025));
-        right_wrist.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.05));
-        right_wrist.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.075));
-        right_wrist.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.1));
-        right_wrist.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.125));
-        right_wrist.link_points->push_back(Eigen::Vector3d(0.0, 0.0, 0.15));
+        right_wrist.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.0, 1.0));
+        right_wrist.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.025, 1.0));
+        right_wrist.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.05, 1.0));
+        right_wrist.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.075, 1.0));
+        right_wrist.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.1, 1.0));
+        right_wrist.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.125, 1.0));
+        right_wrist.link_points->push_back(Eigen::Vector4d(0.0, 0.0, 0.15, 1.0));
         // Get the end of the wrist/EE shape
         GetEndEffectorPoints(right_wrist, environment_id);
         const std::vector<simple_robot_models::RobotLink> links = {torso, right_arm_mount, right_upper_shoulder, right_lower_shoulder, right_upper_elbow, right_lower_elbow, right_upper_forearm, right_lower_forearm, right_wrist};

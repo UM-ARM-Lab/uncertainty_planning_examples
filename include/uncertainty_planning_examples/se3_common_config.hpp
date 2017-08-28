@@ -83,7 +83,7 @@ namespace se3_common_config
     {
         const double kp = 1.0; //0.1
         const double ki = 0.0;
-        const double kd = 0.01;
+        const double kd = 0.0; //0.01;
         const double i_clamp = 0.0;
         const double velocity_limit = 1.0; //0.25; // 1.0;
         const double angular_velocity_limit = velocity_limit * 0.25;
@@ -95,17 +95,23 @@ namespace se3_common_config
         return robot_config;
     }
 
-    inline std::pair<Eigen::Affine3d, Eigen::Affine3d> GetStartAndGoal()
+    inline Eigen::Isometry3d MakeConfig(const Eigen::Translation3d& translation, const Eigen::Quaterniond& rotation)
+    {
+        const Eigen::Isometry3d config = translation * rotation;
+        return config;
+    }
+
+    inline std::pair<Eigen::Isometry3d, Eigen::Isometry3d> GetStartAndGoal()
     {
         // Define the goals of the plan
-        const Eigen::Affine3d start = Eigen::Translation3d(9.0, 9.0, 9.0) * Eigen::Quaterniond::Identity();
-        const Eigen::Affine3d goal = Eigen::Translation3d(2.25, 2.25, 0.625) * Eigen::Quaterniond::Identity();
+        const Eigen::Isometry3d start = MakeConfig(Eigen::Translation3d(9.0, 9.0, 9.0), Eigen::Quaterniond::Identity());
+        const Eigen::Isometry3d goal = MakeConfig(Eigen::Translation3d(2.25, 2.25, 0.625), Eigen::Quaterniond::Identity());
         return std::make_pair(start, goal);
     }
 
-    inline std::shared_ptr<EigenHelpers::VectorVector3d> GetRobotPoints()
+    inline std::shared_ptr<EigenHelpers::VectorVector4d> GetRobotPoints()
     {
-        std::shared_ptr<EigenHelpers::VectorVector3d> robot_points(new EigenHelpers::VectorVector3d());
+        std::shared_ptr<EigenHelpers::VectorVector4d> robot_points(new EigenHelpers::VectorVector4d());
         const std::vector<double> x_pos = {-0.1875, -0.0625, 0.0625, 0.1875};
         const std::vector<double> y_pos = {-0.1875, -0.0625, 0.0625, 0.1875};
         const std::vector<double> z_pos = {-0.4375, -0.3125, -0.1875, -0.0625, 0.0625, 0.1875, 0.3125, 0.4375};
@@ -115,7 +121,7 @@ namespace se3_common_config
             {
                 for (size_t zpdx = 0; zpdx < z_pos.size(); zpdx++)
                 {
-                    robot_points->push_back(Eigen::Vector3d(x_pos[xpdx], y_pos[ypdx], z_pos[zpdx]));
+                    robot_points->push_back(Eigen::Vector4d(x_pos[xpdx], y_pos[ypdx], z_pos[zpdx], 1.0));
                 }
             }
         }
@@ -125,7 +131,7 @@ namespace se3_common_config
     inline simple_robot_models::SimpleSE3Robot GetRobot(const simple_robot_models::SE3_ROBOT_CONFIG& robot_config)
     {
         // Make the actual robot
-        const Eigen::Affine3d initial_config = Eigen::Affine3d::Identity();
+        const Eigen::Isometry3d initial_config = Eigen::Isometry3d::Identity();
         simple_robot_models::SimpleSE3Robot robot(GetRobotPoints(), initial_config, robot_config);
         return robot;
     }
@@ -145,9 +151,10 @@ namespace se3_common_config
 
     inline uncertainty_planning_core::SE3SimulatorPtr GetSimulator(const config_common::TASK_CONFIG_PARAMS& options, const int32_t debug_level)
     {
+        const int32_t real_debug_level = std::max(0, debug_level - 1);
         const simulator_environment_builder::EnvironmentComponents environment_components = simulator_environment_builder::BuildCompleteEnvironment(options.environment_id, options.environment_resolution);
         const fast_kinematic_simulator::SolverParameters solver_params = fast_kinematic_simulator::GetDefaultSolverParameters();
-        return fast_kinematic_simulator::MakeSE3Simulator(environment_components.GetEnvironment(), environment_components.GetEnvironmentSDF(), environment_components.GetSurfaceNormalsGrid(), solver_params, options.simulation_controller_frequency, debug_level);
+        return fast_kinematic_simulator::MakeSE3Simulator(environment_components.GetEnvironment(), environment_components.GetEnvironmentSDF(), environment_components.GetSurfaceNormalsGrid(), solver_params, options.simulation_controller_frequency, real_debug_level);
     }
 }
 

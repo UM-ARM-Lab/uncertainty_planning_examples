@@ -1,3 +1,4 @@
 float64 translation_actuator_error
 float64 rotation_actuation_error
+float64 minimum_actuator_error
 ---

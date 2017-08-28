@@ -31,8 +31,8 @@ using namespace uncertainty_contact_planning;
 inline std::vector<Eigen::Matrix<double, 3, 1>, std::allocator<Eigen::Matrix<double, 3, 1>>> move_robot(const Eigen::Matrix<double, 3, 1>& target_config, const Eigen::Matrix<double, 3, 1>& expected_result_config, const double duration, const double execution_shortcut_distance, const bool reset, ros::ServiceClient& robot_control_service)
 {
     UNUSED(expected_result_config);
-    const Eigen::Affine3d target_transform = Eigen::Translation3d(target_config(0), target_config(1), 0.0) * Eigen::Quaterniond(Eigen::AngleAxisd(target_config(2), Eigen::Vector3d::UnitZ()));
-    const geometry_msgs::PoseStamped target_pose = EigenHelpersConversions::EigenAffine3dToGeometryPoseStamped(target_transform, "world");
+    const Eigen::Isometry3d target_transform = Eigen::Translation3d(target_config(0), target_config(1), 0.0) * Eigen::Quaterniond(Eigen::AngleAxisd(target_config(2), Eigen::Vector3d::UnitZ()));
+    const geometry_msgs::PoseStamped target_pose = EigenHelpersConversions::EigenIsometry3dToGeometryPoseStamped(target_transform, "world");
     // Put together service call
     uncertainty_planning_examples::Simple6dofRobotMove::Request req;
     req.time_limit = ros::Duration(duration);
@@ -64,7 +64,7 @@ inline std::vector<Eigen::Matrix<double, 3, 1>, std::allocator<Eigen::Matrix<dou
     std::vector<Eigen::Matrix<double, 3, 1>, std::allocator<Eigen::Matrix<double, 3, 1>>> configs(poses.size());
     for (size_t idx = 0; idx < poses.size(); idx++)
     {
-        const Eigen::Affine3d& transform = EigenHelpersConversions::GeometryPoseToEigenAffine3d(poses[idx].pose);
+        const Eigen::Isometry3d& transform = EigenHelpersConversions::GeometryPoseToEigenIsometry3d(poses[idx].pose);
         const Eigen::Vector3d position = transform.translation();
         const Eigen::AngleAxisd rotation(transform.rotation());
         const Eigen::Vector3d axis = rotation.axis();

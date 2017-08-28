@@ -173,7 +173,7 @@ void execute(ros::Publisher& display_debug_publisher, ros::ServiceClient& robot_
     const std::pair<uncertainty_planning_core::LinkedConfig, uncertainty_planning_core::LinkedConfig> start_and_goal = baxter_linked_common_config::GetStartAndGoal();
     const uncertainty_planning_core::LinkedSamplerPtr sampler = baxter_linked_common_config::GetSampler();
     const simple_robot_models::LINKED_ROBOT_CONFIG robot_config = baxter_linked_common_config::GetDefaultRobotConfig(extra_options);
-    const Eigen::Affine3d base_transform = baxter_linked_common_config::GetBaseTransform();
+    const Eigen::Isometry3d base_transform = baxter_linked_common_config::GetBaseTransform();
     const uncertainty_planning_core::LinkedRobot robot = baxter_linked_common_config::GetRobot(base_transform, robot_config, joint_uncertainty_params, joint_distance_weights, extra_options.environment_id);
     const uncertainty_planning_core::LinkedSimulatorPtr simulator = baxter_linked_common_config::GetSimulator(extra_options, options.debug_level);
     // Load the policy

@@ -28,6 +28,7 @@ using namespace uncertainty_contact_planning;
 void plan(ros::Publisher& display_debug_publisher)
 {
     const uncertainty_planning_core::PLANNING_AND_EXECUTION_OPTIONS options = se3_common_config::GetOptions();
+    //options.prng_seed = UINT64_C(1490038935709266544);
     const config_common::TASK_CONFIG_PARAMS extra_options = se3_common_config::GetExtraOptions();
     std::cout << PrettyPrint::PrettyPrint(options) << "\n" << PrettyPrint::PrettyPrint(extra_options) << std::endl;
     const std::pair<uncertainty_planning_core::SE3Config, uncertainty_planning_core::SE3Config> start_and_goal = se3_common_config::GetStartAndGoal();
